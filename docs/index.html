@@ -166,6 +166,19 @@
         color: #8ea3cc;
       }
 
+      .node-info .formula {
+        margin: 10px 0 12px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(145, 169, 255, 0.12);
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        font-size: 11px;
+        color: #eaf2ff;
+        white-space: nowrap;
+        overflow-x: auto;
+      }
+
       .node-info .bar {
         height: 8px;
         border-radius: 999px;
@@ -212,8 +225,9 @@
       <div class="node-info" id="nodeInfo">
         <h2>Click a node</h2>
         <div class="muted">Inspect its layer, activation, bias, connected weights, and its current role in the network.</div>
+        <div class="formula">output = activation(Σ(input<sub>i</sub> × weight<sub>i</sub>) + bias)</div>
       </div>
     </div>
-    <script type="module" src="./app.js"></script>
+    <script type="module" src="app.js"></script>
   </body>
 </html>

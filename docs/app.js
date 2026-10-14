@@ -361,6 +361,7 @@ function renderNodeInfo(node, state) {
     nodeInfoEl.innerHTML = `
       <h2>Click a node</h2>
       <div class="muted">Inspect its layer, activation, bias, connected weights, and its current role in the network.</div>
+      <div class="formula">output = activation(Σ(input<sub>i</sub> × weight<sub>i</sub>) + bias)</div>
     `;
     return;
   }
@@ -404,6 +405,7 @@ function renderNodeInfo(node, state) {
   nodeInfoEl.innerHTML = `
     <h2>${selectedLabel}</h2>
     <div class="muted">Layer: ${layer} &middot; State: ${active}</div>
+    <div class="formula">output = activation(Σ(input<sub>i</sub> × weight<sub>i</sub>) + bias)</div>
     <h3>Node details</h3>
     <table>
       ${[
