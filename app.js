@@ -131,7 +131,8 @@ const net = new AdditionNet();
 const dataset = buildDataset();
 
 let currentExample = sampleExample();
-let training = true;
+let training = false;
+let trainingStarted = false;
 let totalSteps = 0;
 let movingLoss = 0;
 let accuracy = 0;
@@ -261,6 +262,14 @@ const leftInput = document.getElementById("leftNumber");
 const rightInput = document.getElementById("rightNumber");
 const trainToggle = document.getElementById("trainToggle");
 const stepOnce = document.getElementById("stepOnce");
+
+function updateTrainingButtonLabel() {
+  if (!trainingStarted) {
+    trainToggle.textContent = "Start training";
+    return;
+  }
+  trainToggle.textContent = training ? "Pause training" : "Resume training";
+}
 
 function getNodeValue(node, state) {
   if (node.userData.layer === "input") {
@@ -443,8 +452,9 @@ leftInput.addEventListener("input", syncExampleFromUI);
 rightInput.addEventListener("input", syncExampleFromUI);
 
 trainToggle.addEventListener("click", () => {
+  trainingStarted = true;
   training = !training;
-  trainToggle.textContent = training ? "Pause training" : "Resume training";
+  updateTrainingButtonLabel();
 });
 
 stepOnce.addEventListener("click", () => {
@@ -583,5 +593,6 @@ renderer.domElement.addEventListener("pointerdown", handlePointerDown);
 
 syncExampleFromUI();
 evaluateAccuracy();
+updateTrainingButtonLabel();
 renderState();
 animate();
