@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Basic - Number Adder</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      html, body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #07111f;
+        color: #e7eefc;
+      }
+
+      #app {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      canvas {
+        display: block;
+      }
+
+      .hud {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        width: 320px;
+        padding: 14px;
+        background: rgba(10, 18, 33, 0.82);
+        border: 1px solid rgba(144, 170, 255, 0.22);
+        border-radius: 14px;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      }
+
+      .hud h1 {
+        margin: 0 0 8px;
+        font-size: 18px;
+      }
+
+      .hud p {
+        margin: 0 0 10px;
+        font-size: 13px;
+        line-height: 1.45;
+        color: #b8c7e8;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+
+      label {
+        display: block;
+        font-size: 12px;
+        color: #8ea3cc;
+        margin-bottom: 4px;
+      }
+
+      input, button {
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 10px;
+        border: 1px solid rgba(145, 169, 255, 0.24);
+        background: rgba(20, 28, 48, 0.95);
+        color: #eef4ff;
+        padding: 10px 12px;
+        font: inherit;
+      }
+
+      button {
+        cursor: pointer;
+        font-weight: 600;
+        background: linear-gradient(180deg, #2c5cff, #2144aa);
+      }
+
+      button.secondary {
+        background: rgba(20, 28, 48, 0.95);
+      }
+
+      .stats {
+        margin-top: 10px;
+        font-size: 12px;
+        color: #d9e4ff;
+        line-height: 1.5;
+      }
+
+      .legend {
+        position: absolute;
+        right: 16px;
+        top: 16px;
+        padding: 12px;
+        width: 260px;
+        background: rgba(10, 18, 33, 0.78);
+        border: 1px solid rgba(144, 170, 255, 0.22);
+        border-radius: 14px;
+        backdrop-filter: blur(8px);
+        font-size: 12px;
+        color: #c7d5f4;
+      }
+
+      .legend b {
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="hud">
+        <h1>20-input addition net</h1>
+        <p>Two one-hot inputs encode digits 0-9. The network learns to predict the sum (0-18) and the 3D graph shows live activations + weights.</p>
+        <div class="row">
+          <div>
+            <label for="leftNumber">Left number</label>
+            <input id="leftNumber" type="number" min="0" max="9" value="3" />
+          </div>
+          <div>
+            <label for="rightNumber">Right number</label>
+            <input id="rightNumber" type="number" min="0" max="9" value="7" />
+          </div>
+        </div>
+        <div class="row">
+          <button id="trainToggle">Pause training</button>
+          <button id="stepOnce" class="secondary">Step once</button>
+        </div>
+        <div class="stats" id="stats"></div>
+      </div>
+      <div class="legend">
+        <b>Blue</b> = positive weights<br />
+        <b>Red</b> = negative weights<br />
+        Node glow reflects activation strength.<br />
+        Hidden layer compresses the 20 inputs into learned features.
+      </div>
+    </div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
