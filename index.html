@@ -113,6 +113,73 @@
       .legend b {
         color: #fff;
       }
+
+      .node-info {
+        position: absolute;
+        right: 16px;
+        top: 150px;
+        bottom: 16px;
+        width: 340px;
+        padding: 14px;
+        background: rgba(10, 18, 33, 0.78);
+        border: 1px solid rgba(144, 170, 255, 0.22);
+        border-radius: 14px;
+        backdrop-filter: blur(8px);
+        overflow: auto;
+        font-size: 12px;
+        line-height: 1.45;
+        color: #c7d5f4;
+      }
+
+      .node-info h2 {
+        margin: 0 0 10px;
+        font-size: 16px;
+        color: #fff;
+      }
+
+      .node-info h3 {
+        margin: 12px 0 6px;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #8ea3cc;
+      }
+
+      .node-info table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .node-info td {
+        padding: 4px 0;
+        vertical-align: top;
+        border-bottom: 1px solid rgba(145, 169, 255, 0.12);
+      }
+
+      .node-info td:first-child {
+        color: #92a9d2;
+        width: 42%;
+        padding-right: 10px;
+      }
+
+      .node-info .muted {
+        color: #8ea3cc;
+      }
+
+      .node-info .bar {
+        height: 8px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        overflow: hidden;
+        margin-top: 4px;
+      }
+
+      .node-info .bar > span {
+        display: block;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #4da3ff, #8fd0ff);
+      }
     </style>
   </head>
   <body>
@@ -141,6 +208,10 @@
         <b>Red</b> = negative weights<br />
         Node glow reflects activation strength.<br />
         Hidden layer compresses the 20 inputs into learned features.
+      </div>
+      <div class="node-info" id="nodeInfo">
+        <h2>Click a node</h2>
+        <div class="muted">Inspect its layer, activation, bias, connected weights, and its current role in the network.</div>
       </div>
     </div>
     <script type="module" src="./app.js"></script>
